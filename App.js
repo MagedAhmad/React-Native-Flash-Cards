@@ -3,12 +3,13 @@ import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from './components/Home';
+import AddDeck from './components/AddDeck'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import reducer from './reducers'
+import reducer from './reducers/decks'
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-function HomeScreen() {
+function Decks() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Home />
@@ -19,7 +20,7 @@ function HomeScreen() {
 function Deck() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Deck ok</Text>
+      <AddDeck />
     </View>
   );
 }
@@ -37,9 +38,9 @@ function App() {
             let iconName;
 
             if (route.name === 'Decks') {
-              iconName = 'ios-home';
-            } else if (route.name === 'Add Deck') {
               iconName = 'ios-list';
+            } else if (route.name === 'Add Deck') {
+              iconName = 'ios-add';
             }
 
             // You can return any component that you like here!
@@ -50,7 +51,7 @@ function App() {
           activeTintColor: 'tomato',
           inactiveTintColor: 'gray',
         }}>
-            <Tab.Screen name="Decks" component={HomeScreen} />
+            <Tab.Screen name="Decks" component={Decks} />
             <Tab.Screen name="Add Deck" component={Deck} />
           </Tab.Navigator>
         </NavigationContainer>
