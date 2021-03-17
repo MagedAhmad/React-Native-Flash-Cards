@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export function addDeck(deck){
+export async function addDeck(deck){
     return AsyncStorage.getItem('app::decks').then(data => {
         const decks = data ? JSON.parse(data) : [];
         try {
@@ -12,14 +12,14 @@ export function addDeck(deck){
     });
 }
 
-export function getDecks(){
+export async function getDecks(){
     try {
-      const value = AsyncStorage.getItem('decks')
+      const value = await AsyncStorage.getItem('decks')
       if(value !== null) {
         return value
       }
     } catch(e) {
-      
+      alert(e)
     }
 }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import {getDecks} from '../api'
 import { getDecksAction } from '../actions/decks';
 
@@ -15,20 +15,28 @@ class Home extends Component {
     )}
 
     render() {
-        console.log(this.props.decks)
         const { decks } = this.props
         const { ready } = this.state
+        console.log(decks)
         return (
-            <Text>{ready}</Text>
+            <View>
+                {Object.keys(decks).map( function(title){
+                    return title ===null ? <Text>No decks</Text> :
+                    <Text key={title}>
+                        {decks[title].title}
+                    </Text>
+                })}
+            </View>
         )
+        
     }
 
 }
 
 function mapStateToProps (decks) {
     return {
-      decks
+        decks
     }
-  }
+}
 
 export default connect(mapStateToProps)(Home)

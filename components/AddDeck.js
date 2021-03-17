@@ -18,7 +18,7 @@ class AddDeck extends Component {
 
         let deck = {
             title : this.state.title,
-            cards: {}
+            questions: {}
         }
         this.props.dispatch(addDeckAction(deck))
         

@@ -3,16 +3,18 @@ import { ADD_DECK_ACTION, GET_DECKS_ACTION } from "../actions/decks";
 function decks (state = {}, action) {
   switch (action.type) {
     case ADD_DECK_ACTION:
-      const { decks } = state;
+      const {deck} = action;
       return {
-        decks: {
-          ...decks,
-          [action.deck.name]: action.deck
+        ...state ,
+        [deck.title]: {
+            title: deck.title ,
+            questions: {}
         }
     }
     case GET_DECKS_ACTION:
       return {
-        decks: action.decks
+        ...state,
+        ...action.decks
     }
     default:
       return state;
