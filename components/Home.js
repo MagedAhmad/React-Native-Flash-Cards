@@ -3,11 +3,11 @@ import { connect } from 'react-redux'
 import { View, Text, TouchableOpacity } from 'react-native';
 import {getDecks} from '../api'
 import { getDecksAction } from '../actions/decks';
+import Deck from './Deck'
 
 class Home extends Component {
     state = {
         decks: {},
-        ready: false
     }
     componentDidMount () {
         getDecks()
@@ -15,20 +15,28 @@ class Home extends Component {
     )}
 
     render() {
-        const { decks } = this.props
-        const { ready } = this.state
-        console.log(decks)
-        return (
-            <View>
-                {Object.keys(decks).map( function(title){
-                    return title ===null ? <Text>No decks</Text> :
-                    <Text key={title}>
-                        {decks[title].title}
-                    </Text>
-                })}
-            </View>
-        )
-        
+        const { decks, navigation } = this.props
+        if(Object.keys(decks).length == 0) {
+            return <Text>No decks</Text>
+        }else {
+            return (
+                <View>
+                    {Object.keys(decks).map( function(title){
+                        return <TouchableOpacity 
+                            onPress={() => navigation.navigate('Details')}
+                            // onPress={() => this.props.navigation.navigate('About')}
+                            key={title}>
+                            <Deck 
+                                navigation={navigation}
+                                deck={decks[title]} 
+                            />
+                        </TouchableOpacity>
+                        
+                    })}
+                </View>
+            )
+        }
+
     }
 
 }

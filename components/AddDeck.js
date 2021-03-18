@@ -23,9 +23,9 @@ class AddDeck extends Component {
         this.props.dispatch(addDeckAction(deck))
         
         addDeck(deck).then(() => {
-            alert("ok")
-        }).catch(() => {
-            alert("error")
+            console.log("done")
+        }).catch((e) => {
+            console.log(e)
         })
     }
 

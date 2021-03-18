@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import Home from './components/Home';
 import AddDeck from './components/AddDeck'
 import { createStore } from 'redux'
@@ -24,6 +25,29 @@ function Deck() {
     </View>
   );
 }
+
+function Details() {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Details</Text>
+    </View>
+  );
+}
+
+
+const Stack = createStackNavigator();
+
+function MyStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Deck" component={Deck} />
+      <Stack.Screen name="Details" component={Details} />
+    </Stack.Navigator>
+  );
+}
+
+
 const Tab = createBottomTabNavigator();
 
 function App() {
@@ -51,8 +75,9 @@ function App() {
           activeTintColor: 'tomato',
           inactiveTintColor: 'gray',
         }}>
-            <Tab.Screen name="Decks" component={Decks} />
+            <Tab.Screen name="Decks" component={MyStack} />
             <Tab.Screen name="Add Deck" component={Deck} />
+            {/* <Tab.Screen name="stacks" component={MyStack} /> */}
           </Tab.Navigator>
         </NavigationContainer>
       </View>
