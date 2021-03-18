@@ -12,4 +12,5 @@ class DeckDetails extends React.Component {
         )
     }
 }
+
 export default DeckDetails;

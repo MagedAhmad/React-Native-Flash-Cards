@@ -23,4 +23,20 @@ export async function getDecks(){
     }
 }
 
-export default {getDecks, addDeck}
+export async function addCard(title , card) {
+
+  try {
+      const decks = await getDecks();
+
+      await AsyncStorage.mergeItem('app::decks' , JSON.stringify({
+          [title]:{
+              questions:[...decks[title].questions].concat(card)
+          }
+      }))
+  }
+  catch(e) {
+      console.log(e)
+  }
+}
+
+export default {getDecks, addDeck, addCard}

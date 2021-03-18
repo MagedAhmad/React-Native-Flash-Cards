@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from './components/Home';
 import AddDeck from './components/AddDeck'
+import AddCard from './components/AddCard'
 import Deck from './components/Deck'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
@@ -36,6 +37,7 @@ function MyStack() {
     <Stack.Navigator>
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Deck" component={Deck} />
+      <Stack.Screen name="AddCard" component={AddCard} />
     </Stack.Navigator>
   );
 }
