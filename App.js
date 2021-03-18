@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from './components/Home';
 import AddDeck from './components/AddDeck'
+import Deck from './components/Deck'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers/decks'
@@ -18,7 +19,7 @@ function Decks() {
   );
 }
 
-function Deck() {
+function AddDeckScreen() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <AddDeck />
@@ -26,13 +27,6 @@ function Deck() {
   );
 }
 
-function Details() {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Details</Text>
-    </View>
-  );
-}
 
 
 const Stack = createStackNavigator();
@@ -42,7 +36,6 @@ function MyStack() {
     <Stack.Navigator>
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Deck" component={Deck} />
-      <Stack.Screen name="Details" component={Details} />
     </Stack.Navigator>
   );
 }
@@ -76,8 +69,7 @@ function App() {
           inactiveTintColor: 'gray',
         }}>
             <Tab.Screen name="Decks" component={MyStack} />
-            <Tab.Screen name="Add Deck" component={Deck} />
-            {/* <Tab.Screen name="stacks" component={MyStack} /> */}
+            <Tab.Screen name="Add Deck" component={AddDeckScreen} />
           </Tab.Navigator>
         </NavigationContainer>
       </View>
