@@ -38,7 +38,7 @@ class AddCard extends Component {
         this.props.dispatch(addCardAction(deck.title, card))
         addCard(deck.title, card).then(() => {
             getDecks().then((decks) => this.props.dispatch(getDecksAction(decks)))
-            this.props.navigation.navigate('Deck', {deck})
+            this.props.navigation.navigate('Home')
         })
     }
 

@@ -76,7 +76,7 @@ class Quiz extends React.Component {
         }else {
             return (
                 <View style={styles.container}>
-                    <Text style={styles.text}>{question.question}</Text>
+                    <Text style={styles.text}>{questions.question}</Text>
                     
                     <TouchableOpacity onPress={() => this.showAnswer()}>
                         <Text style={styles.text}>Answer</Text>

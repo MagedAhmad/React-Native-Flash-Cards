@@ -5,8 +5,12 @@ import {addDeck} from '../api'
 import { addDeckAction } from '../actions/decks';
 
 class AddDeck extends Component {
+    componentDidMount() {
+        this.props.navigation.setOptions({ title: 'Add Deck' })
+    }
     state = {
-        title: ''
+        title: '',
+        deck: {}
     }
     changeTitle = (e) => {
         e.preventDefault()
@@ -19,7 +23,11 @@ class AddDeck extends Component {
         this.props.dispatch(addDeckAction(this.state.title))
         
         addDeck(this.state.title).then(() => {
-            console.log("done")
+            let deck = {
+                title: this.state.title,
+                questions: {}
+            }
+            this.props.navigation.navigate('Deck', {deck})
         }).catch((e) => {
             console.log(e)
         })

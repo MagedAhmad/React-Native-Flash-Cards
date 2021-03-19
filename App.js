@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -40,6 +40,7 @@ function MyStack() {
       <Stack.Screen name="Deck" component={Deck} />
       <Stack.Screen name="Quiz" component={Quiz} />
       <Stack.Screen name="AddCard" component={AddCard} />
+      <Stack.Screen name="AddDeck" component={AddDeck} />
     </Stack.Navigator>
   );
 }
@@ -73,7 +74,7 @@ function App() {
           inactiveTintColor: 'gray',
         }}>
             <Tab.Screen name="Decks" component={MyStack} />
-            <Tab.Screen name="Add Deck" component={AddDeckScreen} />
+            <Tab.Screen name="Add Deck" component={AddDeck} />
           </Tab.Navigator>
         </NavigationContainer>
       </View>
