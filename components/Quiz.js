@@ -1,11 +1,11 @@
 import React from "react";
 import {StyleSheet, Text, View, TouchableOpacity} from "react-native";
 
-class Deck extends React.Component {
+class Quiz extends React.Component {
     componentDidMount() {
         const {deck} = this.props.route.params
 
-        this.props.navigation.setOptions({ title: deck.title })
+        this.props.navigation.setOptions({ title: deck.title + ' Quiz' })
     }
     
     render() {
@@ -15,9 +15,7 @@ class Deck extends React.Component {
             <View style={styles.container}>
                 <Text style={styles.text}>{deck.title}</Text>
                 <Text>{deck.questions != null && deck.questions != undefined && deck.questions.length > 0 ? deck.questions.length : 0} cards</Text>
-                <TouchableOpacity style={ styles.button } onPress={() => navigation.navigate('AddCard', {deck : deck})}>
-                    <Text style={styles.text}>Add card</Text>
-                </TouchableOpacity>
+                
                 <TouchableOpacity style={ styles.button } onPress={() => navigation.navigate('quiz', {deck : deck})}>
                     <Text style={styles.text}>Start quiz</Text>
                 </TouchableOpacity>
@@ -52,4 +50,4 @@ const styles = StyleSheet.create({
         margin:10   
     }
 });
-export default Deck;
+export default Quiz;

@@ -16,13 +16,9 @@ class AddDeck extends Component {
     submitForm = (e) => {
         e.preventDefault()
 
-        let deck = {
-            title : this.state.title,
-            questions: {}
-        }
-        this.props.dispatch(addDeckAction(deck))
+        this.props.dispatch(addDeckAction(this.state.title))
         
-        addDeck(deck).then(() => {
+        addDeck(this.state.title).then(() => {
             console.log("done")
         }).catch((e) => {
             console.log(e)

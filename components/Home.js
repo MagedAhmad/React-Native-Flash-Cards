@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, SafeAreaView, ScrollView, StatusBar } from 'react-native';
 import {getDecks} from '../api'
 import { getDecksAction } from '../actions/decks';
 import DeckDetails from './DeckDetails'
@@ -10,9 +10,8 @@ class Home extends Component {
         decks: {},
     }
     componentDidMount () {
-        getDecks()
-            .then((decks) => this.props.dispatch(getDecksAction(decks))
-    )}
+        getDecks().then((decks) => this.props.dispatch(getDecksAction(decks)))
+    }
 
     render() {
         const { decks, navigation } = this.props
@@ -22,17 +21,21 @@ class Home extends Component {
             </View>
         }else {
             return (
-                <View style={styles.container}>
-                    {Object.keys(decks).map( function(title){
-                        return <TouchableOpacity
-                            style={styles.deck} 
-                            onPress={() => navigation.navigate('Deck', {deck :decks[title]})}
-                            key={title}>
-                            <DeckDetails deck={decks[title]}/>
-                        </TouchableOpacity>
-                        
-                    })}
-                </View>
+                <SafeAreaView style={styles.container}>
+                    <ScrollView style={styles.scrollView}>
+                        <View style={styles.container}>
+                            {Object.keys(decks).map( function(title){
+                                return <TouchableOpacity
+                                    style={styles.deck} 
+                                    onPress={() => navigation.navigate('Deck', {deck :decks[title]})}
+                                    key={title}>
+                                    <DeckDetails deck={decks[title]}/>
+                                </TouchableOpacity>
+                                
+                            })}
+                        </View>
+                    </ScrollView>
+                </SafeAreaView>
             )
         }
 
@@ -59,7 +62,10 @@ const styles = StyleSheet.create({
         backgroundColor: 'purple',
         padding:30,
         margin:5
-    }
+    },
+    scrollView: {
+        marginHorizontal: 20,
+    },
 });
 
 

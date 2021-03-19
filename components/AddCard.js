@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View, Text, TextInput, Button } from 'react-native';
-import { addDeckAction } from '../actions/decks';
 import { addCardAction } from '../actions/cards';
-import { addCard } from '../api';
+import { addCard, getDecks } from '../api';
+import { getDecksAction } from '../actions/decks';
 
 class AddCard extends Component {
     componentDidMount() {
@@ -35,13 +35,19 @@ class AddCard extends Component {
             question : this.state.question,
             answer: this.state.answer
         }
-        addCardAction(deck.title, card)
-
+        this.props.dispatch(addCardAction(deck.title, card))
         addCard(deck.title, card).then(() => {
-            this.props.navigation.goBack();
-        }).catch((e) => {
-            console.log(e)
+            // getDecks().then((decks) => {
+            //   this.props.dispatch(getDecksAction(decks))
+            // })
+
+            // this.props.navigation.navigate('Deck', {deck})
         })
+            
+        //     this.props.navigation.goBack();
+        // }).catch((e) => {
+        //     console.log(e)
+        // })
     }
 
     render() {

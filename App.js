@@ -7,6 +7,7 @@ import Home from './components/Home';
 import AddDeck from './components/AddDeck'
 import AddCard from './components/AddCard'
 import Deck from './components/Deck'
+import Quiz from './components/Quiz'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers/decks'
@@ -37,6 +38,7 @@ function MyStack() {
     <Stack.Navigator>
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Deck" component={Deck} />
+      <Stack.Screen name="Quiz" component={Quiz} />
       <Stack.Screen name="AddCard" component={AddCard} />
     </Stack.Navigator>
   );
