@@ -1,5 +1,6 @@
 import React from "react";
 import {StyleSheet, Text, View, TouchableOpacity} from "react-native";
+import {clearLocalNotification, setLocalNotification} from "../utils/helpers";
 
 class Quiz extends React.Component {
     state = {
@@ -11,6 +12,7 @@ class Quiz extends React.Component {
     }
     componentDidMount() {
         const {deck} = this.props.route.params
+        console.log(deck)
         this.setState({max: deck.questions.length})
 
         this.props.navigation.setOptions({ title: 'Quiz' })
@@ -30,6 +32,8 @@ class Quiz extends React.Component {
 
         if(this.state.pageCount === this.state.max - 1) {
             this.setState({finished: true})
+            clearLocalNotification()
+                .then(setLocalNotification)
 
         }else {
             this.setState((state) => {
@@ -76,8 +80,7 @@ class Quiz extends React.Component {
         }else {
             return (
                 <View style={styles.container}>
-                    <Text style={styles.text}>{questions.question}</Text>
-                    
+                    <Text style={styles.text}>{question.question}</Text>
                     <TouchableOpacity onPress={() => this.showAnswer()}>
                         <Text style={styles.text}>Answer</Text>
                     </TouchableOpacity>

@@ -4,7 +4,6 @@ import {StyleSheet, Text, View, TouchableOpacity} from "react-native";
 class Deck extends React.Component {
     componentDidMount() {
         const {deck} = this.props.route.params
-
         this.props.navigation.setOptions({ title: deck.title })
     }
     
