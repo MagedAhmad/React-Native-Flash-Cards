@@ -29,6 +29,9 @@ class Quiz extends React.Component {
                 return {correct: state.correct + 1}
             })
         }
+        this.setState((state) => {
+            return {previewAnswer: false}
+        })
 
         if(this.state.pageCount === this.state.max - 1) {
             this.setState({finished: true})
