@@ -10,7 +10,7 @@ class AddDeck extends Component {
     }
     state = {
         title: '',
-        deck: {}
+        deck: {},
     }
     changeTitle = (e) => {
         e.preventDefault()
@@ -38,7 +38,7 @@ class AddDeck extends Component {
             <View style={styles.container}>
                 <Text style={styles.text}>Add a deck</Text>
                 <TextInput style={styles.input} value={this.state.title} onChange={this.changeTitle} placeholder="deck title"></TextInput>
-                <Button title="Add" onPress={this.submitForm} />
+                <Button title="Add" onPress={this.submitForm} disabled={this.state.title === '' ? true : false}/>
             </View>
         )
     }

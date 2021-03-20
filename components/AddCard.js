@@ -49,7 +49,7 @@ class AddCard extends Component {
                 <Text style={styles.formLabel}> Add Card </Text>
                 <TextInput style={styles.inputStyle} value={this.state.question} onChange={this.changeQuestion} placeholder="card question"></TextInput>
                 <TextInput style={styles.inputStyle} value={this.state.answer} onChange={this.changeAnswer} placeholder="card answer"></TextInput>
-                <Button title="Add" onPress={this.submitForm} />
+                <Button title="Add" onPress={this.submitForm} disabled={this.state.question == '' ? true : false}/>
             </View>
             
         )
